@@ -1,0 +1,23 @@
+.header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color: aquamarine;
+    width: 100%;
+    padding: 10px;
+    top: -1%;
+}
+
+.title {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+    .header {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.5rem;
+    }
+}
