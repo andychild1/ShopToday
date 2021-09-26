@@ -37,9 +37,7 @@ const CartCard = ({cart}) => {
                 <h2>{cartItems ? cart.cart.subtotal.formatted_with_symbol : null}</h2>
             </div>
             <div>
-                <Link to="/checkout">
-                    <button className="placeOrder">Place Order</button>
-                </Link>
+               {cartItems.length ? <Link to="/checkout"><button className="placeOrder">Place Order</button></Link> : 'Cart Empty'}
             </div>
         </div>
     );
