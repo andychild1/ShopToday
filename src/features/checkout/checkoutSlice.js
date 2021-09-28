@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { checkoutProcess } from '../products/commerce';
+import { checkoutProcess, fetchShippingCountries, fetchSubdivisions, fetchShippingOptions } from '../products/commerce';
 
 const initialState = {
-    checkoutToken: {},
+      checkoutToken: {},
+      shippingData: {},
       // Customer details
       firstName: '',
       lastName: '',
@@ -21,53 +22,73 @@ const initialState = {
       ccv: '',
       billingPostalZipcode: '',
       // Shipping and fulfillment data
-      shippingCountries: {},
-      shippingSubdivisions: {},
+      shippingCountries: [],
+      shippingSubdivisions: [],
+      shippingSubdivision: '',
       shippingOptions: [],
       shippingOption: '',
       checkoutPending: false,
-      checkoutRejected: false
+      checkoutRejected: false,
+      shippingCountryPending: false,
+      shippingCountryRejected: false,
+      subdivisionsPending: false,
+      subdivisionsRejected: false,
+      shippingOptionsPending: false,
+      shippingOptionsRejected: false
 };
 
 const checkoutReducer = createSlice({
     name: 'checkout',
     initialState,
     reducers: {
+        //Si può omettere il return per via dell' uso di IMMER
         first_Name: (state, action) => {
-            return state.firstName[action.payload];
+            state.firstName = action.payload;
         },
         last_name: (state, action) => {
-            return state.lastName[action.payload];
+            state.lastName = action.payload;
         },
         _email: (state, action) => {
-            return state.email[action.payload];
+            state.email = action.payload;
         },
         shipping_name: (state, action) => {
-            return state.shippingName[action.payload];
+            state.shippingName = action.payload;
         },
         shipping_street: (state, action) => {
-            return state.shippingStreet[action.payload];
+            state.shippingStreet = action.payload;
         },
         shipping_city: (state, action) => {
-            return state.shippingCity[action.payload];
+            state.shippingCity = action.payload;
         },
         shipping_stateProvince: (state, action) => {
-            return state.shippingStateProvince[action.payload];
+            state.shippingStateProvince = action.payload;
+        },
+        shipping_country: (state, action) => {
+            state.shippingCountry = action.payload;
+        },
+        shipping_subdivision: (state, action) => {
+            state.shippingSubdivision = action.payload;
+        },
+        shipping_option: (state, action) => {
+            state.shippingOption = action.payload;
         },
         shipping_postalZipCode: (state, action) => {
-            return state.shippingPostalZipCode[action.payload];
+            state.shippingPostalZipCode = action.payload;
         },
         card_num: (state, action) => {
-            return state.cardNum[action.payload];
+            state.cardNum = action.payload;
         },
         exp_month: (state, action) => {
-            return state.expMonth[action.payload];
+            state.expMonth = action.payload;
         },
         exp_year: (state, action) => {
-            return state.expYear[action.payload];
+            state.expYear = action.payload;
         },
         ccv_change: (state, action) => {
-            return state.ccv[action.payload];
+            state.ccv = action.payload;
+        },
+        shipping_data: (state, action) => {
+            state.shippingData = action.payload;
         }
     },
     extraReducers: {
@@ -84,29 +105,69 @@ const checkoutReducer = createSlice({
             state.checkoutPending = false;
             state.checkoutRejected = true;
         },
+        [fetchShippingCountries.pending]: (state) => {
+            state.shippingCountryPending = true;
+            state.shippingCountryRejected = false;
+        },
+        [fetchShippingCountries.fulfilled]: (state, action) => {
+            state.shippingCountryPending = false;
+            state.shippingCountryRejected = false;
+            state.shippingCountries = action.payload;
+        },
+        [fetchShippingCountries.rejected]: (state) => {
+            state.shippingCountryPending = false;
+            state.shippingCountryRejected = true;
+        },
+        [fetchSubdivisions.pending]: (state) => {
+            state.subdivisionsPending = true;
+            state.subdivisionsRejected = false;
+        },
+        [fetchSubdivisions.fulfilled]: (state, action) => {
+            state.subdivisionsPending = false;
+            state.subdivisionsRejected = false;
+            state.shippingSubdivisions = action.payload;
+        },
+        [fetchSubdivisions.rejected]: (state) => {
+            state.subdivisionsPending = false;
+            state.subdivisionsRejected = true;
+        },
+        [fetchShippingOptions.pending]: (state) => {
+            state.shippingOptionsPending = true;
+            state.shippingOptionsRejected = false;
+        },
+        [fetchShippingOptions.fulfilled]: (state, action) => {
+            state.shippingOptionsPending = false;
+            state.shippingOptionsRejected = false;
+            state.shippingOptions = action.payload;
+        },
+        [fetchShippingOptions.rejected]: (state) => {
+            state.shippingOptionsPending = false;
+            state.shippingOptionsRejected = true;
+        },
     }
 });
 
 export const selectToken = state => state.checkout.checkoutToken;
-export const selectFirstName = state => state.firstName;
-export const selectLastName = state => state.lastName;
-export const selectEmail = state => state.email;
-export const selectShippingName = state => state.shippingName;
-export const selectShippingStreet = state => state.shippingStreet;
-export const selectShippingCity = state => state.shippingCity;
-export const selectShippingStateProvince = state => state.shippingStateProvince;
-export const selectShippingPostalZipCode = state => state.shippingPostalZipCode;
-export const selectShippingCountry = state => state.shippingCountry;
-export const selectCardNum = state => state.cardNum;
-export const selectExpMonth = state => state.expMonth;
-export const selectExpYear = state => state.expYear;
-export const selectCcv = state => state.ccv;
-export const selectBillingPostalZipCode = state => state.billingPostalZipCode;
-export const selectShippingCountries = state => state.shippingCountries;
-export const selectShippingSubdivisions = state => state.shippingSubdivisions;
-export const selectShippingOptions = state => state.shippingOptions;
-export const selectShippingOption = state => state.shippingOption;
+export const selectFirstName = state => state.checkout.firstName;
+export const selectLastName = state => state.checkout.lastName;
+export const selectEmail = state => state.checkout.email;
+export const selectShippingName = state => state.checkout.shippingName;
+export const selectShippingStreet = state => state.checkout.shippingStreet;
+export const selectShippingCity = state => state.checkout.shippingCity;
+export const selectShippingStateProvince = state => state.checkout.shippingStateProvince;
+export const selectShippingPostalZipCode = state => state.checkout.shippingPostalZipCode;
+export const selectShippingCountry = state => state.checkout.shippingCountry;
+export const selectCardNum = state => state.checkout.cardNum;
+export const selectExpMonth = state => state.checkout.expMonth;
+export const selectExpYear = state => state.checkout.expYear;
+export const selectCcv = state => state.checkout.ccv;
+export const selectBillingPostalZipCode = state => state.checkout.billingPostalZipCode;
+export const selectShippingCountries = state => state.checkout.shippingCountries;
+export const selectShippingSubdivisions = state => state.checkout.shippingSubdivisions;
+export const selectShippingSubdivision = state => state.checkout.shippingSubdivision;
+export const selectShippingOptions = state => state.checkout.shippingOptions;
+export const selectShippingOption = state => state.checkout.shippingOption;
 export const { first_Name, last_name, _email, shipping_name, shipping_street, shipping_city, shipping_stateProvince, shipping_postalZipCode,
-      card_num, exp_month, exp_year, ccv_change
+      card_num, exp_month, exp_year, ccv_change, shipping_country, shipping_subdivision, shipping_option, shipping_data
       } = checkoutReducer.actions;
 export default checkoutReducer.reducer;

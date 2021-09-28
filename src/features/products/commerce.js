@@ -50,6 +50,24 @@ export const checkoutProcess = createAsyncThunk('checkout/generateToken',
 async (data) => {
     const { cartId, type} = data;
     const response = await commerce.checkout.generateToken(cartId, type);
-    console.log(response);
+    return response;
+});
+
+export const fetchShippingCountries = createAsyncThunk('checkout/shippingCountries',
+async (checkoutTokenId) => {
+    const response = await commerce.services.localeListShippingCountries(checkoutTokenId);
+    return response.countries;
+});
+
+export const fetchSubdivisions = createAsyncThunk('checkout/subdivisions',
+async (countryCode) => {
+    const response = await commerce.services.localeListSubdivisions(countryCode);
+    return response.subdivisions;
+});
+
+export const fetchShippingOptions = createAsyncThunk('checkout/Options',
+async (data) => {
+    const { tokenId, country, region = null } = data;
+    const response = await commerce.checkout.getShippingOptions(tokenId, { country, region });
     return response;
 });
