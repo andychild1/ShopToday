@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadCart, addToCart, updateCart, removeCartItem } from '../products/commerce';
+import { loadCart, addToCart, updateCart, removeCartItem, refreshCart } from '../products/commerce';
 
 
 const initialState = {
@@ -12,6 +12,8 @@ const initialState = {
     updateCartRejected: false,
     removeCartItemPending: false,
     removeCartItemRejected: false,
+    cartRefreshPending: false,
+    cartRefreshRejected: false
 };
 
 const cartReducer = createSlice({
@@ -72,6 +74,19 @@ const cartReducer = createSlice({
         [removeCartItem.rejected]: (state) => {
             state.removeCartItemPending = false;
             state.removeCartItemRejected = true;
+        },
+        [refreshCart.pending]: (state) => {
+            state.cartRefreshPending = true;
+            state.cartRefreshRejected = false;
+        },
+        [refreshCart.fulfilled]: (state, action) => {
+            state.cartRefreshPending = false;
+            state.cartRefreshRejected = false;
+            state.cart = action.payload;
+        },
+        [refreshCart.rejected]: (state) => {
+            state.cartRefreshPending = false;
+            state.cartRefreshRejected = true;
         },
     },
 });

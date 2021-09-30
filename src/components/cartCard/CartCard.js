@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const CartCard = ({cart}) => {
    const dispatch = useDispatch();
    const loading = useSelector(selectLoadingCart);
-   const cartItems = cart.cart.line_items;
+   const cartItems = Object.entries(cart.cart).length === 0 ? [] : cart.cart.line_items;
 
    if (loading) {
        return <div className="loading">Loading Cart...</div>;
@@ -34,7 +34,7 @@ const CartCard = ({cart}) => {
             </div>
             <div className="totalPrice">
                 <h4 className="total">Total</h4>
-                <h2>{cartItems ? cart.cart.subtotal.formatted_with_symbol : null}</h2>
+                <h2>{cartItems.length ? cart.cart.subtotal.formatted_with_symbol : null}</h2>
             </div>
             <div>
                {cartItems.length ? <Link to="/checkout"><button className="placeOrder">Place Order</button></Link> : 'Cart Empty'}

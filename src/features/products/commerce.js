@@ -71,3 +71,16 @@ async (data) => {
     const response = await commerce.checkout.getShippingOptions(tokenId, { country, region });
     return response;
 });
+
+export const handleCaptureCheckout = createAsyncThunk('checkout/captureCheckout',
+async (data) => {
+    const { tokenId, newOrder } = data;
+    const response = await commerce.checkout.capture(tokenId, newOrder);
+    return response;
+});
+
+export const refreshCart = createAsyncThunk('cart/refreshCart',
+async () => {
+    const response = await commerce.cart.refresh();
+    return response;
+});

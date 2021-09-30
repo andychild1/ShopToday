@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { checkoutProcess, fetchShippingCountries, fetchSubdivisions, fetchShippingOptions } from '../products/commerce';
+import { checkoutProcess, fetchShippingCountries, fetchSubdivisions, fetchShippingOptions, handleCaptureCheckout } from '../products/commerce';
 
 const initialState = {
       checkoutToken: {},
       shippingData: {},
+      incomingOrder: {},
       // Customer details
       firstName: '',
       lastName: '',
@@ -27,6 +28,7 @@ const initialState = {
       shippingSubdivision: '',
       shippingOptions: [],
       shippingOption: '',
+      orderConfirm: false,
       checkoutPending: false,
       checkoutRejected: false,
       shippingCountryPending: false,
@@ -34,7 +36,9 @@ const initialState = {
       subdivisionsPending: false,
       subdivisionsRejected: false,
       shippingOptionsPending: false,
-      shippingOptionsRejected: false
+      shippingOptionsRejected: false,
+      captureCheckoutPending: false,
+      captureCheckoutRejected: false
 };
 
 const checkoutReducer = createSlice({
@@ -89,7 +93,7 @@ const checkoutReducer = createSlice({
         },
         shipping_data: (state, action) => {
             state.shippingData = action.payload;
-        }
+        },
     },
     extraReducers: {
         [checkoutProcess.pending]: (state) => {
@@ -144,6 +148,19 @@ const checkoutReducer = createSlice({
             state.shippingOptionsPending = false;
             state.shippingOptionsRejected = true;
         },
+        [handleCaptureCheckout.pending]: (state) => {
+            state.captureCheckoutPending = true;
+            state.captureCheckoutRejected = false;
+        },
+        [handleCaptureCheckout.fulfilled]: (state, action) => {
+            state.captureCheckoutPending = false;
+            state.captureCheckoutRejected = false;
+            state.incomingOrder = action.payload;
+        },
+        [handleCaptureCheckout.rejected]: (state) => {
+            state.captureCheckoutPending = false;
+            state.captureCheckoutRejected = true;
+        },
     }
 });
 
@@ -167,7 +184,9 @@ export const selectShippingSubdivisions = state => state.checkout.shippingSubdiv
 export const selectShippingSubdivision = state => state.checkout.shippingSubdivision;
 export const selectShippingOptions = state => state.checkout.shippingOptions;
 export const selectShippingOption = state => state.checkout.shippingOption;
+export const selectShippingData = state => state.checkout.shippingData;
+export const selectIncomingOrder = state => state.checkout.incomingOrder;
 export const { first_Name, last_name, _email, shipping_name, shipping_street, shipping_city, shipping_stateProvince, shipping_postalZipCode,
-      card_num, exp_month, exp_year, ccv_change, shipping_country, shipping_subdivision, shipping_option, shipping_data
+      card_num, exp_month, exp_year, ccv_change, shipping_country, shipping_subdivision, shipping_option, shipping_data, confirm_order
       } = checkoutReducer.actions;
 export default checkoutReducer.reducer;
