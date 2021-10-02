@@ -3,6 +3,7 @@ import './CartCard.css';
 import { updateCart, removeCartItem } from "../../features/products/commerce";
 import { selectLoadingCart } from "../../features/cart/cartSlice";
 import { Link } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 
 
 const CartCard = ({cart}) => {
@@ -11,7 +12,7 @@ const CartCard = ({cart}) => {
    const cartItems = Object.entries(cart.cart).length === 0 ? [] : cart.cart.line_items;
 
    if (loading) {
-       return <div className="loading">Loading Cart...</div>;
+       return <div className="loading">Loading Cart...<CircularProgress style={{color: 'aquamarine'}}/></div>;
    };
    
 

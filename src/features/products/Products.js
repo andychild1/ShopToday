@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectProducts, isLoadingProducts } from "./productsSlice";
 import Product from '../product/Product';
 import './Product.css';
+import { CircularProgress } from '@material-ui/core';
 
 const Products = () => {
 
@@ -15,7 +16,7 @@ useEffect(() => {
        dispatch(loadProducts());
 }, [dispatch]);
 
-if (loading) return <div className="loading">Loading...</div>;
+if (loading) return <div className="loading">Loading...<CircularProgress style={{color: 'aquamarine'}}/></div>;
 
     return(
         <div>
