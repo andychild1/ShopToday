@@ -6,14 +6,6 @@ const initialState = {
       shippingData: {},
       incomingOrder: {},
       activeStep: 0,
-      // Customer details
-      firstName: '',
-      lastName: '',
-      email: '',
-      shippingName: '',
-      shippingStreet: '',
-      shippingCity: '',
-      shippingZipCode: '',
       // Shipping and fulfillment data
       shippingCountry: '',
       shippingCountries: [],
@@ -55,6 +47,9 @@ const checkoutReducer = createSlice({
         },
         setBack_step: (state, action) => {
             state.activeStep -= action.payload;
+        },
+        reset_step: (state, action) => {
+            state.activeStep = action.payload;
         },
     },
     extraReducers: {
@@ -144,6 +139,6 @@ export const selectShippingStreet = state => state.checkout.shippingStreet;
 export const selectShippingCity = state => state.checkout.shippingCity;
 export const selectShippingZipCode = state => state.checkout.shippingZipCode;
 export const { card_num, exp_month, exp_year, ccv_change, shipping_country, shipping_subdivision, shipping_option, shipping_data,
-    setActive_step, setBack_step
+    setActive_step, setBack_step, reset_step
       } = checkoutReducer.actions;
 export default checkoutReducer.reducer;

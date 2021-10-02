@@ -70,7 +70,7 @@ const PaymentForm = ({ token, back, nextStep }) => {
                              <CardElement />
                              <br></br><br/>
                              <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '20px' }}>
-                                 <Button onClick={back} variant="outlined" style={{background: 'rgb(177, 207, 197)'}}>Back</Button>
+                                 <Button onClick={back}  variant="outlined" style={{background: 'rgb(177, 207, 197)'}}>Back</Button>
                                  <Button type="submit" variant="contained" disabled={!stripe} color="secondary">Pay {token.live.subtotal.formatted_with_symbol}</Button>
                              </div>
                          </form>
