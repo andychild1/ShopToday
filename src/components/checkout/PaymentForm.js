@@ -4,14 +4,15 @@ import Review from './Review';
 import { selectShippingData } from '../../features/checkout/checkoutSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleCaptureCheckout, refreshCart } from '../../features/products/commerce';
+import { Divider, Typography, Button } from '@material-ui/core';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ token }) => {
+const PaymentForm = ({ token, back, nextStep }) => {
 
     const dispatch = useDispatch();
     const shippingData = useSelector(selectShippingData);
-console.log(shippingData);
+    
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
 
@@ -47,35 +48,36 @@ console.log(shippingData);
                 payment: {
                     gateway: 'stripe',
                     stripe: {
-                        payment_methid_id: paymentMethod.id
+                        payment_method_id: paymentMethod.id
                     }
                 }
             }
             dispatch(handleCaptureCheckout({ tokenId: token.id, newOrder: orderData}));
             dispatch(refreshCart());
-            console.log(orderData);
+            nextStep();
         }
     }
     
     return(
-        <>
+        <div style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }}>
         <Review token={token}/>
-             <h4>Payment Method</h4>
+        <Divider />
+             <Typography style={{ background: 'rgb(148, 241, 210)' }} variant="h6" gutterBottom>Payment Method</Typography>
              <Elements stripe={stripePromise}>
                  <ElementsConsumer>
                      {({ elements, stripe }) => (
-                         <form onSubmit={(event) => handleSubmit(event, elements, stripe)}>
+                         <form onSubmit={(event) => handleSubmit(event, elements, stripe)} style={{ margin: '20px' }}>
                              <CardElement />
-                             <br></br><br></br>
-                             <div>
-                                 <button>Back</button>
-                                 <button type="submit" disabled={!stripe}>Pay {token.live.subtotal.formatted_with_symbol}</button>
+                             <br></br><br/>
+                             <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '20px' }}>
+                                 <Button onClick={back} variant="outlined" style={{background: 'rgb(177, 207, 197)'}}>Back</Button>
+                                 <Button type="submit" variant="contained" disabled={!stripe} color="secondary">Pay {token.live.subtotal.formatted_with_symbol}</Button>
                              </div>
                          </form>
                      )}
                  </ElementsConsumer>
              </Elements>
-        </>
+        </div>
     );
 };
 export default PaymentForm;

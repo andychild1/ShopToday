@@ -1,0 +1,19 @@
+.shipping-address {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.select-fields {
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.input {
+    margin: 5px;
+}

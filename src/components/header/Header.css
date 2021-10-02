@@ -11,6 +11,8 @@
 .title {
     padding-top: 10px;
     padding-left: 10px;
+    text-transform: uppercase;
+    color: rgba(7, 91, 70, 0.945);
 }
 
 @media only screen and (max-width: 850px) {

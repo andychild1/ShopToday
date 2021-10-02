@@ -16,11 +16,8 @@ const CartCard = ({cart}) => {
    
 
     return(
-        <div className="cartCard">
-            <Link to="/">
-            <button className="cartButton">Back</button>
-            </Link>
-            <div>
+        <div>
+            <div className="cartCard">
             {cartItems ? cartItems.map(item => <div key={item.id} className="itemCartName"><h3>{item.name}</h3>
             <img alt="product view" src={item.media.source}></img>
             <h3>{item.price.formatted_with_symbol}</h3>
@@ -37,6 +34,9 @@ const CartCard = ({cart}) => {
                 <h2>{cartItems.length ? cart.cart.subtotal.formatted_with_symbol : null}</h2>
             </div>
             <div>
+               <Link to="/">
+                   <button className="cartButton">Back</button>
+               </Link>
                {cartItems.length ? <Link to="/checkout"><button className="placeOrder">Place Order</button></Link> : 'Cart Empty'}
             </div>
         </div>
