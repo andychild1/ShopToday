@@ -14,9 +14,13 @@
 
 .cartNumber {
     position: absolute;
-    top: 40px;
-    right: 130px;
+    top: 36px;
+    right: 80px;
+    padding: 6px;
+    color: lightgrey;
     cursor: pointer;
+    background-color: rgb(106, 106, 223);
+    border-radius: 30px;
 }
 
 @media only screen and (max-width: 800px) {

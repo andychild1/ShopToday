@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
-import Products from './features/products/Products';
+import Home from '../src/components/home/Home';
 import CartCard from './components/cartCard/CartCard';
 import Checkout from './components/checkout/Checkout';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ const cart = useSelector(selectCart);
       <main>
         <Switch>
           <Route exact path="/">
-              <Products />
+              <Home />
           </Route>
           <Route exact path="/cart">
               <CartCard cart={cart} />

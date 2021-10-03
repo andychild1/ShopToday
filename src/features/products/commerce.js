@@ -8,8 +8,19 @@ export const loadProducts = createAsyncThunk('products/loadProduct',
 async () => {
     const data = await commerce.products.list();
     return data;
-}
-);
+});
+
+export const loadCategories = createAsyncThunk('products/loadCategories',
+async () => {
+    const categories = await commerce.categories.list();
+    return categories;
+});
+
+export const loadCategory = createAsyncThunk('products/loadCategory',
+async (catId) => {
+    const category = await commerce.categories.retrieve(catId);
+    return category;
+});
 
 export const loadCart = createAsyncThunk('products/loadCart',
 async () => {

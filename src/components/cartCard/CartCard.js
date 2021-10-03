@@ -4,6 +4,7 @@ import { updateCart, removeCartItem } from "../../features/products/commerce";
 import { selectLoadingCart } from "../../features/cart/cartSlice";
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
+import { MdDelete } from 'react-icons/md';
 
 
 const CartCard = ({cart}) => {
@@ -27,7 +28,7 @@ const CartCard = ({cart}) => {
             <button onClick={() => dispatch(updateCart({productId: item.id, quantity: item.quantity + 1}))}>+</button>
             <button onClick={() => dispatch(updateCart({productId: item.id, quantity: item.quantity - 1}))}>-</button>
             </div>
-            <button className="remove" onClick={() => dispatch(removeCartItem(item.id))}>Remove</button>
+            <MdDelete className="remove" onClick={() => dispatch(removeCartItem(item.id))}>Remove</MdDelete>
             </div>) : null}
             </div>
             <div className="totalPrice">

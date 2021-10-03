@@ -12,8 +12,8 @@ const cartTotal = cart.cart.total_items;
                 <Link to="/cart">
                 <BsBucket className="cart" />
                 </Link>
-                <p className="cartNumber">{cartTotal}</p>
             </h3>
+            <h5 className="cartNumber">{cartTotal}</h5>
         </div>
     );
 };
