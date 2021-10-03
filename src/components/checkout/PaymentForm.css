@@ -1,0 +1,10 @@
+.payment-container {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media only screen and (max-width: 600px) {
+    .payment-container {
+        width: 300px;
+    }
+}

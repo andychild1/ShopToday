@@ -2,13 +2,6 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-}
-
-.category {
-    position: block;
-    width: 100%;
-    background-color: rgb(177, 207, 197);
-    padding: 20px;
     margin-top: 50px;
 }
 

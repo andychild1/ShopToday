@@ -5,6 +5,7 @@ import { selectShippingData } from '../../features/checkout/checkoutSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleCaptureCheckout, refreshCart } from '../../features/products/commerce';
 import { Divider, Typography, Button } from '@material-ui/core';
+import './PaymentForm.css';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
@@ -59,7 +60,7 @@ const PaymentForm = ({ token, back, nextStep }) => {
     }
     
     return(
-        <div style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <div className="payment-container">
         <Review token={token}/>
         <Divider />
              <Typography style={{ background: 'rgb(148, 241, 210)' }} variant="h6" gutterBottom>Payment Method</Typography>

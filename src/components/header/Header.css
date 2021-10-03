@@ -2,17 +2,19 @@
     position: fixed;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
     background-color: aquamarine;
+    text-align: center;
     width: 100%;
-    padding: 10px;
     top: -1%;
 }
 
 .title {
-    padding-top: 10px;
-    padding-left: 10px;
     text-transform: uppercase;
     color: black;
+    width: 250px;
+    margin: auto;
 }
 
 @media only screen and (max-width: 850px) {

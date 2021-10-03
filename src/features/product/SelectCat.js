@@ -1,5 +1,4 @@
 import { selectCategories, select_category, selectSelectedCategory } from '../products/productsSlice';
-import Products from '../products/Products';
 import { loadCategories, loadCategory } from '../products/commerce';
 import { useSelector, useDispatch } from "react-redux"; 
 import { useEffect } from 'react';
@@ -29,7 +28,6 @@ const SelectCat = () => {
         <Select style={{width: '200px'}} name="categories" value={selectedCategory} onChange={(e) => dispatch(select_category(e.target.value))}>
             {categories ? categories.map(cat => <MenuItem  value={cat.name} key={cat.id}>{cat.name}</MenuItem>) : []}
         </Select>
-        <Products />
         </div>
     );
 };

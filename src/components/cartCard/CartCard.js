@@ -35,7 +35,7 @@ const CartCard = ({cart}) => {
                 <h4 className="total">Total</h4>
                 <h2>{cartItems.length ? cart.cart.subtotal.formatted_with_symbol : null}</h2>
             </div>
-            <div>
+            <div className="buttons">
                <Link to="/">
                    <button className="cartButton">Back</button>
                </Link>

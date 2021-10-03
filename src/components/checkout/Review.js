@@ -1,8 +1,9 @@
 import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
+import './Review.css'
 
 const Review = ({ token }) => {
     return(
-        <div style={{marginTop: '50px'}}>
+        <div className="review-container">
         <Typography style={{ background: 'rgb(148, 241, 210)' }} variant="h6" gutterBottom>Order Summary</Typography>
         <List disablePadding>
             {token.live.line_items.map(item => (

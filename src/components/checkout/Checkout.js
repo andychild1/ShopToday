@@ -58,11 +58,10 @@ const Checkout = ({cart}) => {
 
     return(
         <>
-        <div  style={{ marginTop: '120px' }}/>
-        <main >
-            <Paper style={{ width: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
-                <Typography style={{background: 'aquamarine', textTransform: 'uppercase', color: 'rgba(7, 91, 70, 0.945)'}} variant="h4" align="center">Checkout</Typography>
-                <Stepper style={{background: 'aquamarine'}} activeStep={activeStep}>
+        <div/>
+        <main style={{width: '100%'}}>
+                <Typography className="checkout" variant="h4" align="center">Checkout</Typography>
+                <Stepper className="stepper" activeStep={activeStep}>
                     {steps.map(step => (
                     <Step key={step}>
                         <StepLabel >{step}</StepLabel>
@@ -70,7 +69,6 @@ const Checkout = ({cart}) => {
                     ))}
                 </Stepper>
                 {activeStep === steps.length ? <Confirmation resetStep={resetStep} order={order}/> : token && <Form token={token} cart={cart} backStep={backStep} nextStep={nextStep} activeStep={activeStep}/>}
-            </Paper>
         </main>
         </>
     );

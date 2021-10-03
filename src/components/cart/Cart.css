@@ -2,7 +2,6 @@
     font-size: 50px;
     background-color: aquamarine;
     border-radius: 20px;
-    margin-right: 90px;
     padding: 10px;
     transition: background-color 600ms linear .2s;
     cursor: pointer;
@@ -13,38 +12,25 @@
 }
 
 .cartNumber {
-    position: absolute;
-    top: 36px;
-    right: 80px;
-    padding: 6px;
     color: lightgrey;
-    cursor: pointer;
+    width: 20px;
     background-color: rgb(106, 106, 223);
     border-radius: 30px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
     .cart {
         font-size: 1.5rem;
     }
     .cartNumber {
         font-size: .8rem;
-        position: absolute;
-        right: 119px;
-        top: 33px;
     }
 }
 @media only screen and (max-width: 450px) {
     .cart {
         font-size: 1.5rem;
-        position: absolute;
-        right: -40px;
-        top: 40px;
     }
     .cartNumber {
         font-size: .8rem;
-        position: absolute;
-        right: 69px;
-        top: 44px;
     }
 }
