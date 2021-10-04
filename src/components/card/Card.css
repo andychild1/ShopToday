@@ -23,8 +23,8 @@
 }
 
 .cardContainer img {
-    width: 220px;
-    height: 190px;
+    width: auto;
+    height: 200px;
 }
 
 .addToCart:hover {

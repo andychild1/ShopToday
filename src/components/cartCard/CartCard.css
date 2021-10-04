@@ -26,11 +26,11 @@
     width: 200px;
 }
 .itemCartName h5 {
-    width: 80px;
+    width: 70px;
 }
 
 .cartCard img {
-    width: 100px;
+    width: auto;
     height: 80px;
 }
 
@@ -63,11 +63,11 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    margin-top: 5%;
 }
 
 .buttons {
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .addRemoveBtn button {
