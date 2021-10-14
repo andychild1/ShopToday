@@ -5,6 +5,7 @@
     padding: 10px;
     transition: background-color 600ms linear .2s;
     cursor: pointer;
+    color: black;
 }
 
 .cart:hover {

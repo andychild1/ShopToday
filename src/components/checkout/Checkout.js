@@ -3,7 +3,7 @@ import { selectToken } from '../../features/checkout/checkoutSlice';
 import { checkoutProcess, fetchShippingCountries, fetchShippingOptions, fetchSubdivisions, } from '../../features/products/commerce';
 import { selectActiveStep, selectIncomingOrder, selectShippingCountry, selectShippingSubdivision, setActive_step, setBack_step, reset_step } from '../../features/checkout/checkoutSlice';
 import { useEffect } from 'react';
-import { Paper, Stepper, Step, StepLabel, Typography } from '@material-ui/core';
+import { Stepper, Step, StepLabel, Typography } from '@material-ui/core';
 import Form from './Form';
 import Confirmation from './Confirmation';
 import './Checkout.css';
@@ -30,13 +30,13 @@ const Checkout = ({cart}) => {
         if (token.id) {
             dispatch(fetchShippingCountries(token.id));
         }
-    }, [token.id, dispatch]);
+    }, [dispatch, token.id]);
 
     useEffect(() => {
         if (shippingCountry) {
             dispatch(fetchSubdivisions(shippingCountry));
         }
-    });
+    }, [dispatch, shippingCountry]);
 
     useEffect(() => {
         if (shippingSubdivision) {

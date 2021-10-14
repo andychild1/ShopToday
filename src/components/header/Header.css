@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+
 .header {
     position: fixed;
     display: flex;
@@ -11,10 +13,10 @@
 }
 
 .title {
-    text-transform: uppercase;
     color: black;
     width: 250px;
     margin: auto;
+    font-family: 'Ephesis', cursive;
 }
 
 @media only screen and (max-width: 850px) {

@@ -18,7 +18,6 @@ const CheckoutForm = ({ nextStep }) => {
     const shippingCountry = useSelector(selectShippingCountry);
     const shippingSubdivision = useSelector(selectShippingSubdivision);
 
-
     const countries = Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name}));
     const subdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({ id: code, label: name}));
     const options = shippingOptions.map(option => ({ id: option.id, label: `${option.description} - (${option.price.formatted_with_symbol})`}));
@@ -41,6 +40,7 @@ const CheckoutForm = ({ nextStep }) => {
                 <Input {...register("shippingStreet", {required: true})} placeholder="Shipping Street" />
                 <Input {...register("city", {required: true})} placeholder="City" />
                 <Input {...register("Zip", {required: true})} placeholder="ZIP / Postal Code" />
+                </div>
                 <div className="select-fields">
                     <InputLabel>Shipping Country</InputLabel>
                     <Select required {...register('shippingCountry')} value={shippingCountry} fullWidth onChange={(e) => dispatch(shipping_country(e.target.value))}>
@@ -55,12 +55,11 @@ const CheckoutForm = ({ nextStep }) => {
                     {options.map(option => <MenuItem  key={option.id} value={option.id}>{option.label}</MenuItem>)}
                     </Select>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '120px' }}>
                 <Link to="/cart" style={{textDecoration: 'none'}}>
                     <Button variant="contained" style={{marginBottom: '20px', background: 'rgb(177, 207, 197)'}}>Back to Cart</Button>
                 </Link>
-                </div>
-                <Button type="submit" variant="contained" style={{background: 'rgba(7, 91, 70, 0.945)', color: 'lightgrey'}} >Confirm order</Button> 
+                <Button type="submit" variant="contained" style={{background: 'rgba(7, 91, 70, 0.945)', color: 'lightgrey' }} >Confirm order</Button> 
                 </div>
         </form>
         </>
