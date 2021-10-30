@@ -7,7 +7,7 @@ const Cart = ({cart}) => {
 const cartTotal = cart.cart.total_items;
 
     return(
-        <div style={{width: '150px', display: 'flex', alignItems: 'center'}}>
+        <div className="basket-container">
             <h3>
                 <Link to="/cart">
                 <BsBucket className="cart" />

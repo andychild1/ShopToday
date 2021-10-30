@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { selectCategories } from './features/products/productsSlice';
 import Products from './features/products/Products';
 import Footer from './components/footer/Footer';
+import CookieConsent from 'react-cookie-consent';
 
 
 function App() {
@@ -34,6 +35,9 @@ const category = useSelector(selectCategories);
           </Route>
         </Switch>
       </main>
+      <CookieConsent >
+        This site use cookies to enchance the user experience
+        </CookieConsent>
       <Footer/>
     </div>
     </Router>

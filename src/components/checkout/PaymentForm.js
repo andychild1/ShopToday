@@ -70,10 +70,12 @@ const PaymentForm = ({ token, back, nextStep }) => {
                          <form onSubmit={(event) => handleSubmit(event, elements, stripe)} style={{ margin: '20px' }}>
                              <CardElement />
                              <br></br><br/>
-                             <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '20px', marginBottom: '90px' }}>
+                             <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '20px', marginBottom: '60px' }}>
                                  <Button onClick={back}  variant="outlined" style={{background: 'rgb(177, 207, 197)'}}>Back</Button>
                                  <Button type="submit" variant="contained" disabled={!stripe} color="secondary">Pay {token.live.subtotal.formatted_with_symbol}</Button>
                              </div>
+                             <h3>This is just a demo, no money will be charged and no products will be delivered</h3>
+                             <p style={{marginBottom: '90px'}}>Enter 4242 4242 4242 4242 in the card number, 04/24 in the expiring date and 42424 in the ccv for testing.</p>
                          </form>
                      )}
                  </ElementsConsumer>

@@ -7,14 +7,15 @@ main {
 }
 .checkout {
     width: 100%;
-    background-color: aquamarine;
+    background-image: linear-gradient(rgb(110, 194, 179), rgb(228, 189, 105));
     padding: 20px;
     text-transform: uppercase;
-    color: rgba(7, 91, 70, 0.945);
+    color: black;
 }
 .stepper {
     margin-left: auto;
     margin-right: auto;
+    background-image: linear-gradient(rgb(228, 189, 105),rgb(110, 194, 179));
 }
 @media only screen and (max-width: 600px) {
     .shipping-address {
@@ -23,8 +24,5 @@ main {
     .checkout {
         width: 100%;
         padding: 5px;
-    }
-    .stepper {
-        background-color: aquamarine;
     }
 }

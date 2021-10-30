@@ -25,7 +25,7 @@ const SelectCat = () => {
 
     return(
         <div className="custom-select">
-        <Select style={{width: '200px'}} name="categories" value={selectedCategory} onChange={(e) => dispatch(select_category(e.target.value))}>
+        <Select id="sel-prod" name="categories" value={selectedCategory} onChange={(e) => dispatch(select_category(e.target.value))}>
             {categories ? categories.map(cat => <MenuItem  value={cat.name} key={cat.id}>{cat.name}</MenuItem>) : []}
         </Select>
         </div>

@@ -1,6 +1,6 @@
 .cardContainer {
     display: flex;
-    background-color: white;
+    background-color: rgb(233, 229, 192);
     justify-content: space-evenly;
     align-items: center;
     flex-flow: column;
@@ -8,9 +8,9 @@
     width: 300px;
     margin: 10px;
     border-radius: 20px;
-    border: 1px solid black;
     text-align: center;
     padding: 10px;
+    color: black;
 }
 
 .addToCart {
@@ -18,7 +18,7 @@
     border: none;
     border-radius: 20px;
     padding: 20px;
-    background-color: aquamarine;
+    background-color: rgb(142, 211, 188);
     transition: background-color 450ms ease 100ms;
 }
 

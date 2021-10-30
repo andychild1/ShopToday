@@ -59,7 +59,7 @@ const CheckoutForm = ({ nextStep }) => {
                 <Link to="/cart" style={{textDecoration: 'none'}}>
                     <Button variant="contained" style={{marginBottom: '20px', background: 'rgb(177, 207, 197)'}}>Back to Cart</Button>
                 </Link>
-                <Button type="submit" variant="contained" style={{background: 'rgba(7, 91, 70, 0.945)', color: 'lightgrey' }} >Confirm order</Button> 
+                <Button type="submit" variant="contained" style={{background: 'rgb(263, 218, 99)', color: 'black' }} >Confirm order</Button> 
                 </div>
         </form>
         </>

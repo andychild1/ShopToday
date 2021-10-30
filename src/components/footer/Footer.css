@@ -1,5 +1,5 @@
 .footer {
-    background-color: aquamarine ;
+    background-image: linear-gradient(rgb(110, 194, 179), rgb(228, 189, 105));
     position: absolute;
     bottom: 0;
     left: 0;
@@ -9,4 +9,5 @@
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: .7rem;
+    color: black;
 }

@@ -6,24 +6,22 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-    background-color: aquamarine;
-    text-align: center;
+    background-image: linear-gradient(rgb(110, 194, 179), rgb(228, 189, 105));
     width: 100%;
     top: -1%;
 }
 
 .title {
     color: black;
-    width: 250px;
-    margin: auto;
+    width: auto;
+    margin-left: 60px;
     font-family: 'Ephesis', cursive;
 }
 
-@media only screen and (max-width: 850px) {
-    .header {
-        width: 100%;
-    }
+@media only screen and (max-width: 600px) {
+
     .title {
         font-size: 1.5rem;
+        margin-left: 10px;
     }
 }
